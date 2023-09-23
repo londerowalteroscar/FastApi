@@ -46,4 +46,29 @@ Uvicorn es un servidor ASGI (Asynchronous Server Gateway Interface) de alto rend
 10. Para cambiar puerto y host y hacer con que la api sea consumible por cualquier ordenador de la red es:
     - uvicorn main:app --reload --port 50000 --host 0.0.0.0
 
+Preparación y subida del repositorio:
 
+1. Crea un repositorio en GitHub: Inicia sesión en tu cuenta de GitHub y crea un nuevo repositorio. Puedes darle un nombre, una descripción y elegir si quieres que sea público o privado. 
+
+2. Configura Git: Asegúrate de tener Git instalado en tu computadora y configura tu nombre de usuario y dirección de correo electrónico en Git utilizando los siguientes comandos en tu terminal:
+
+    - git config --global user.name "Tu Nombre"
+    - git config --global user.email "tu@email.com"
+
+3. Inicializa tu repositorio local: Abre la terminal, navega hasta el directorio raíz de tu proyecto y ejecuta el siguiente comando para inicializar un repositorio Git local:
+    - git init
+
+4. Agrega los archivos y realiza el commit inicial: Utiliza el siguiente comando para agregar todos los archivos de tu proyecto al área de preparación de Git:
+    - git add .
+    Luego, realiza el commit inicial con un mensaje descriptivo:
+    - git commit -m "Commit inicial"
+
+5. Conecta tu repositorio local con el repositorio remoto en GitHub: Copia la URL del repositorio remoto que creaste en GitHub. Luego, ejecuta el siguiente comando para conectar tu repositorio local con el remoto:
+    - git remote add origin <URL_del_repositorio>
+
+6. Sube tu proyecto a GitHub: Finalmente, utiliza el siguiente comando para subir tu proyecto al repositorio remoto en GitHub:
+    - git push -u origin master
+    Esto enviará tus archivos al repositorio remoto y establecerá una relación de seguimiento entre tu repositorio local y el remoto. 
+
+
+    
