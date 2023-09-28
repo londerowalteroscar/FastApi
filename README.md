@@ -69,6 +69,26 @@ Preparación y subida del repositorio:
 6. Sube tu proyecto a GitHub: Finalmente, utiliza el siguiente comando para subir tu proyecto al repositorio remoto en GitHub:
     - git push -u origin master
     Esto enviará tus archivos al repositorio remoto y establecerá una relación de seguimiento entre tu repositorio local y el remoto. 
-
-
+# Ramas en GitHub
+Para solucionar el problema de tener dos ramas en tu repositorio y no haber obtenido los resultados esperados, puedes seguir estos pasos: 
+ 
+1. Verifica las ramas existentes: Utiliza el siguiente comando en tu terminal para ver las ramas actuales en tu repositorio:
+    - git branch
+Este comando mostrará una lista de todas las ramas en tu repositorio local y resaltará la rama actual con un asterisco (*). 
+ 
+2. Cambia a la rama deseada: Si deseas trabajar en una rama específica, puedes cambiar a ella utilizando el siguiente comando:
+    - git checkout nombre_de_la_rama
+Reemplaza "nombre_de_la_rama" con el nombre de la rama en la que deseas trabajar. 
+ 
+3. Fusiona las ramas o realiza cambios necesarios: Si tienes cambios en ambas ramas y deseas fusionarlos, puedes utilizar el comando  git merge  para combinar los cambios de una rama en otra. Por ejemplo, si deseas fusionar los cambios de la rama "rama1" en la rama "rama2", ejecuta el siguiente comando:
+    - git checkout rama2.
+    - git merge rama1.
     
+Si solo deseas descartar una de las ramas y trabajar solo en una, puedes eliminar la rama no deseada utilizando el siguiente comando:    
+    - git branch -d nombre_de_la_rama.
+Reemplaza "nombre_de_la_rama" con el nombre de la rama que deseas eliminar. 
+ 
+Recuerda que estos comandos se aplican a tu repositorio local. Si deseas reflejar los cambios en tu repositorio remoto en GitHub, deberás utilizar el comando  git push  después de realizar los cambios necesarios. 
+ 
+Espero que estos pasos te ayuden a solucionar el problema con las ramas en tu repositorio. Si tienes alguna otra pregunta, no dudes en preguntar.
+
