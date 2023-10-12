@@ -32,3 +32,15 @@ def mensaje():
 @app.get("/ventas", tags = ["Ventas"])
 def dame_ventas():
     return ventas
+
+@app.get("/ventas/{id}", tags = ["Ventas"])
+def dame_ventas (id:int):
+    for elem in ventas:
+        if elem["id"]==id:
+            return elem
+    return []
+
+@app.get("/ventas/", tags = ["Ventas"])
+def dame_ventas_por_tienda(tienda:str): 
+    return [elem for elem in ventas if elem["tienda"]==tienda]
+
