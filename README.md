@@ -105,3 +105,7 @@ app.version = "1.0.1"
 
 Crear punto de entreada o endpoint:
 @app.get("/", tags = ["Bienvenida"]) # Cambio de etiqueta en documentación.
+
+Para devolver diccionarios en FastApi importamos:   
+    - from fastapi.responses import HTMLResponse
+
