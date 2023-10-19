@@ -60,7 +60,7 @@ def crea_venta(id:int = Body(), fecha:str = Body(), tienda:str = Body(), importe
     )
     return ventas
 #----------------------------------------------------------------
-
+# Esta función realiza cambios en el diccionario que elegimos a traves del id.
 @app.put("/ventas/{id}", tags=["Ventas"])
 def actualiza_ventas(id:int, fecha:str = Body(), tienda:str = Body(), importe:float = Body()):
     # Recorrer elementos de una lista.
@@ -69,4 +69,12 @@ def actualiza_ventas(id:int, fecha:str = Body(), tienda:str = Body(), importe:fl
             elem["fecha"] = fecha
             elem["tienda"] = tienda
             elem["importe"] = importe
+    return ventas
+
+@app.delete("/ventas/{id}", tags=["ventas"])
+def borra_venta(id:int):
+    # Recorremos los elementos de la lista.
+    for elem in ventas:
+        if elem["id"] == id:
+            ventas.remove(elem)
     return ventas

@@ -192,3 +192,105 @@ El método POST se utiliza en una amplia gama de aplicaciones. Por ejemplo, se p
 * Crear una nueva entrada en un blog.
 
 En resumen, el método POST en FastAPI se utiliza para definir rutas que permiten a los usuarios crear o actualizar datos en un recurso.
+
+## El método PUT
+
+El método PUT es un método HTTP que se utiliza para actualizar datos en un recurso. En FastAPI, el método PUT se utiliza para definir rutas que permiten a los usuarios actualizar datos en un recurso existente.
+
+Para utilizar el método PUT en FastAPI, debemos usar la anotación @app.put() para definir una ruta. Por ejemplo, el siguiente código define una ruta que permite a los usuarios actualizar la fecha de una venta:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.put("/ventas/{id}")
+def actualiza_fecha_venta(id: int, fecha: str):
+    # Recorrer elementos de una lista.
+    for elem in ventas:
+        if elem["id"] == id:
+            elem["fecha"] = fecha
+    return ventas
+```
+
+Este código define una ruta llamada `/ventas/{id}`. El parámetro `id` es un parámetro de ruta obligatorio. Cuando un usuario realiza una petición PUT a esta ruta, FastAPI actualizará la fecha de la venta con el ID especificado con el valor especificado en el parámetro `fecha`.
+
+El método PUT se utiliza en una amplia gama de aplicaciones. Por ejemplo, se puede utilizar para:
+
+* Actualizar la fecha de una reserva en una aplicación de viajes.
+* Actualizar el precio de un producto en una tienda online.
+* Actualizar la contraseña de un usuario en una aplicación web.
+
+En resumen, el método PUT en FastAPI se utiliza para definir rutas que permiten a los usuarios actualizar datos en un recurso existente.
+
+En comparación con el método POST, el método PUT tiene las siguientes ventajas:
+
+* Es más eficiente, ya que no es necesario crear un nuevo recurso.
+* Es más seguro, ya que el recurso existente se puede validar antes de actualizarlo.
+
+Sin embargo, el método PUT tiene una desventaja:
+
+* No se puede utilizar para crear nuevos recursos.
+
+Para crear nuevos recursos, debemos utilizar el método POST.
+
+El método DELETE es un método HTTP que se utiliza para eliminar un recurso. En FastAPI, el método DELETE se utiliza para definir rutas que permiten a los usuarios eliminar un recurso existente.
+
+Para utilizar el método DELETE en FastAPI, debemos usar la anotación @app.delete() para definir una ruta. Por ejemplo, el siguiente código define una ruta que permite a los usuarios eliminar una venta:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.delete("/ventas/{id}")
+def elimina_venta(id: int):
+    # Recorrer elementos de una lista.
+    for elem in ventas:
+        if elem["id"] == id:
+            ventas.remove(elem)
+    return ventas
+```
+
+Este código define una ruta llamada `/ventas/{id}`. El parámetro `id` es un parámetro de ruta obligatorio. Cuando un usuario realiza una petición DELETE a esta ruta, FastAPI eliminará la venta con el ID especificado.
+
+## El método DELETE
+
+El método DELETE es un método HTTP que se utiliza para eliminar un recurso. En FastAPI, el método DELETE se utiliza para definir rutas que permiten a los usuarios eliminar un recurso existente.
+
+Para utilizar el método DELETE en FastAPI, debemos usar la anotación @app.delete() para definir una ruta. Por ejemplo, el siguiente código define una ruta que permite a los usuarios eliminar una venta:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.delete("/ventas/{id}")
+def elimina_venta(id: int):
+    # Recorrer elementos de una lista.
+    for elem in ventas:
+        if elem["id"] == id:
+            ventas.remove(elem)
+    return ventas
+```
+
+Este código define una ruta llamada `/ventas/{id}`. El parámetro `id` es un parámetro de ruta obligatorio. Cuando un usuario realiza una petición DELETE a esta ruta, FastAPI eliminará la venta con el ID especificado.
+
+El método DELETE se utiliza en una amplia gama de aplicaciones. Por ejemplo, se puede utilizar para:
+
+* Eliminar una publicación de un blog.
+* Eliminar una cuenta de usuario.
+* Eliminar un archivo.
+
+En resumen, el método DELETE en FastAPI se utiliza para definir rutas que permiten a los usuarios eliminar un recurso existente.
+
+En comparación con el método PUT, el método DELETE tiene las siguientes ventajas:
+
+* Es más eficiente, ya que no es necesario actualizar un recurso existente.
+* Es más seguro, ya que el recurso existente se puede validar antes de eliminarlo.
+
+Sin embargo, el método DELETE tiene una desventaja:
+
+* No se puede utilizar para actualizar datos en un recurso existente.
+
+Para actualizar datos en un recurso existente, debemos utilizar el método PUT.
