@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
 from fastapi.responses import HTMLResponse
 # Crear instancia de FastAPI
 app = FastAPI()
@@ -44,3 +44,14 @@ def dame_ventas (id:int):
 def dame_ventas_por_tienda(tienda:str): 
     return [elem for elem in ventas if elem["tienda"]==tienda]
 
+@app.post("/ventas", tags=["Ventas"])
+def crea_venta(id:int = Body(), fecha:str = Body(), tienda:str = Body(), importe:float = Body()):
+    ventas.append(
+        {
+            "id":id,
+            "fecha":fecha,
+            "tienda":tienda,
+            "importe":importe
+        }
+    )
+    return ventas
