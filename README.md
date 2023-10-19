@@ -109,3 +109,86 @@ Crear punto de entreada o endpoint:
 Para devolver diccionarios en FastApi importamos:   
     - from fastapi.responses import HTMLResponse
 
+# Métodos
+
+## El método GET
+El método GET es uno de los métodos HTTP más comunes. Se utiliza para recuperar información de un servidor. En FastAPI, el método GET se utiliza para definir una ruta que permite a los usuarios obtener datos de un recurso.
+
+Para utilizar el método GET en FastAPI, debemos usar la anotación @app.get() para definir una ruta. Por ejemplo, el siguiente código define una ruta que permite a los usuarios obtener la lista de todos los usuarios:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/users")
+def get_users():
+    return [
+        {"id": 1, "name": "John Doe"},
+        {"id": 2, "name": "Jane Doe"},
+    ]
+```
+
+Este código define una ruta llamada `/users`. Cuando un usuario realiza una petición GET a esta ruta, FastAPI devolverá una lista de todos los usuarios.
+
+El método GET también se puede utilizar para recuperar datos de un recurso específico. Para ello, podemos utilizar parámetros en la ruta. Por ejemplo, el siguiente código define una ruta que permite a los usuarios obtener un usuario específico por su ID:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/users/{user_id}")
+def get_user(user_id: int):
+    return {"id": user_id, "name": "John Doe"}
+```
+
+Este código define una ruta llamada `/users/{user_id}`. El parámetro `user_id` es un parámetro de ruta obligatorio. Cuando un usuario realiza una petición GET a esta ruta, FastAPI devolverá los datos del usuario con el ID especificado.
+
+El método GET se utiliza en una amplia gama de aplicaciones. Por ejemplo, se puede utilizar para:
+
+* Recuperar la lista de productos de una tienda online.
+* Recuperar la lista de noticias de un sitio web.
+* Recuperar la información de un usuario de una base de datos.
+
+En resumen, el método GET en FastAPI se utiliza para definir rutas que permiten a los usuarios obtener datos de un recurso.
+
+## El método POST
+
+El método POST es un método HTTP que se utiliza para crear o actualizar datos en un recurso. En FastAPI, el método POST se utiliza para definir rutas que permiten a los usuarios crear o actualizar datos.
+
+Para utilizar el método POST en FastAPI, debemos usar la anotación @app.post() para definir una ruta. Por ejemplo, el siguiente código define una ruta que permite a los usuarios crear un nuevo usuario:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.post("/users")
+def create_user(name: str, email: str):
+    return {"name": name, "email": email}
+```
+
+Este código define una ruta llamada `/users`. Cuando un usuario realiza una petición POST a esta ruta, FastAPI creará un nuevo usuario con los datos especificados en los parámetros `name` y `email`.
+
+El método POST también se puede utilizar para actualizar datos en un recurso existente. Para ello, podemos utilizar parámetros en la ruta. Por ejemplo, el siguiente código define una ruta que permite a los usuarios actualizar el nombre de un usuario:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.post("/users/{user_id}")
+def update_user_name(user_id: int, name: str):
+    return {"id": user_id, "name": name}
+```
+
+Este código define una ruta llamada `/users/{user_id}`. El parámetro `user_id` es un parámetro de ruta obligatorio. Cuando un usuario realiza una petición POST a esta ruta, FastAPI actualizará el nombre del usuario con el ID especificado con el valor especificado en el parámetro `name`.
+
+El método POST se utiliza en una amplia gama de aplicaciones. Por ejemplo, se puede utilizar para:
+
+* Crear un nuevo usuario en una aplicación web.
+* Crear una nueva orden de compra en una tienda online.
+* Crear una nueva entrada en un blog.
+
+En resumen, el método POST en FastAPI se utiliza para definir rutas que permiten a los usuarios crear o actualizar datos en un recurso.
