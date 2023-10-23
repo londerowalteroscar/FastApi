@@ -1,6 +1,6 @@
-from fastapi import FastAPI, Body
+from fastapi import FastAPI, Body, Path, Query
 from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
 # Crear instancia de FastAPI
@@ -14,12 +14,22 @@ app.version = "1.0.1"
 
 # Creamos el Modelo:
 class Ventas(BaseModel):
-    id: Optional[int]=None
+    id: int = Field(ge=0, le=20)
+    # id: Optional[int]=None
     fecha:str
-    tienda:str
+    tienda: str = Field(default="Malena", min_lenght=4, max_lenght=10)
+    # tienda:str
     importe:float
-    
-    
+        
+    class Config:
+        schema_extra = {
+            "example" : {
+                "id":5,
+                "fecha":"01/01/2021",
+                "tienda":"WALTER",
+                "importe":20
+            }
+        }    
 # Diccionario de pruebas
 ventas = [
     {
@@ -50,7 +60,7 @@ def dame_ventas():
 
 #----------------------------------------------------------------
 @app.get("/ventas/{id}", tags = ["Ventas"])
-def dame_ventas (id:int):
+def dame_ventas (id:int = Path(ge=1, le=1000)):
     for elem in ventas:
         if elem["id"]==id:
             return elem
@@ -59,7 +69,7 @@ def dame_ventas (id:int):
 
 #----------------------------------------------------------------
 @app.get("/ventas/", tags = ["Ventas"])
-def dame_ventas_por_tienda(tienda:str): 
+def dame_ventas_por_tienda(tienda:str = Query(min_length=4, max_length=20)): 
     return [elem for elem in ventas if elem["tienda"]==tienda]
 
 #----------------------------------------------------------------
