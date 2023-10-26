@@ -7,6 +7,7 @@ from fastapi.security import HTTPBearer
 import jwt
 
 
+
 # Crear instancia de FastAPI
 app = FastAPI()
 
@@ -15,6 +16,8 @@ app.title = "Tutorial FastApi"
 
 # Versión de la Aplicación de FastAPI
 app.version = "1.0.1"
+
+
 #Modelo Usuario
 class Usuario(BaseModel):
     email:str
@@ -75,9 +78,12 @@ ventas = [
 ]
 #----------------------------------------------------------------
 # Crear punto de entreada o endpoint:
-@app.get("/", tags = ["Bienvenida"]) # Cambio de etiqueta en documentación.
+@app.get("/", tags=["Bienvenida"]) 
 def mensaje():
-    return HTMLResponse("<h2> Titulo HTML desde FastApi </h2>")
+    content = (
+        "<h2> Bienvenido a la <a href='http://127.0.0.1:8000/docs#/' > FastAPI </a> </h2>"
+    )
+    return HTMLResponse(content)
 
 
 #----------------------------------------------------------------
