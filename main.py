@@ -1,7 +1,8 @@
-from fastapi import FastAPI, Body, Path, Query
+from fastapi import FastAPI, Body, Path, Query, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel, Field
 from typing import Optional, List
+from jwt_config import dame_token
 
 # Crear instancia de FastAPI
 app = FastAPI()
@@ -11,7 +12,11 @@ app.title = "Tutorial FastApi"
 
 # Versión de la Aplicación de FastAPI
 app.version = "1.0.1"
-
+#Modelo Usuario
+class Usuario(BaseModel):
+    email:str
+    clave:str
+    
 # Creamos el Modelo:
 class Ventas(BaseModel):
     id: int = Field(ge=0, le=20)
@@ -120,3 +125,12 @@ def borra_venta(id:int) -> dict:
     return JSONResponse(content = {"Mensaje": "Venta Borrada"})
 
 #----------------------------------------------------------------
+# Creamos Ruta para LogIn
+@app.post("/Login", tags=["Autenticación"])
+def login(usuario: Usuario):
+    if usuario.email == "londer@gmail.com" and usuario.clave == "2236":
+        # Obtenemos el token con la funcion pasandole el diccionario de usuario.
+        token = dame_token(usuario.dict())
+        return JSONResponse(status_code=200, content={"token": token})
+    else:
+        raise HTTPException(status_code=404, detail="Acceso denegado.")
