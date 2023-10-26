@@ -1,8 +1,11 @@
-from fastapi import FastAPI, Body, Path, Query, HTTPException
+from fastapi import FastAPI, Body, Path, Query, HTTPException, Depends, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel, Field
 from typing import Optional, List
-from jwt_config import dame_token
+from jwt_config import dame_token, valida_token
+from fastapi.security import HTTPBearer
+import jwt
+
 
 # Crear instancia de FastAPI
 app = FastAPI()
@@ -35,6 +38,14 @@ class Ventas(BaseModel):
                 "importe":20
             }
         }    
+
+class Portador(HTTPBearer):
+    async def __call__(self, request: Request):
+        autorizacion = await super().__call__(request)
+        dato = valida_token(autorizacion.credentials)
+        if dato["email"] != "londer@gmail.com":
+            raise HTTPException(status_code=403, detail="Not authorized")
+        
 # Diccionario de pruebas
 ventas = [
     {
@@ -70,7 +81,7 @@ def mensaje():
 
 
 #----------------------------------------------------------------
-@app.get("/ventas", tags = ["Ventas"], response_model = List[Ventas], status_code = 200)
+@app.get("/ventas", tags = ["Ventas"], response_model = List[Ventas], status_code = 200, dependencies=[Depends(Portador())])
 def dame_ventas()->List[Ventas]:
     return JSONResponse(content = ventas)
 
